@@ -22,6 +22,7 @@ public class UsersArrayList implements UserList {
 
     private void increaseUsers() {
         arrCapacity *= defaultCapacityMultiplicator;
+//        System.out.println(arrCapacity);
         User[] tmp = new User[arrCapacity];
 
         for (int i = 0; i <= arrSize; i++) {
