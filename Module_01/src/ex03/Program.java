@@ -16,29 +16,29 @@ public class Program {
         printUser(alex);
         printUser(dima);
 
-        UsersArrayList list = new UsersArrayList();
-
-        list.addUser(dima);
-        list.addUser(kira);
-        list.addUser(alex);
-
-        list.addUser(new User("t1", 1));
-        list.addUser(new User("t2", 1));
-        list.addUser(new User("t3", 1));
-        list.addUser(new User("t4", 1));
-        list.addUser(new User("t5", 1));
-        list.addUser(new User("t6", 1));
-        list.addUser(new User("t7", 1));
-        list.addUser(new User("t8", 1));
-        list.addUser(new User("t9", 1));
-
-        System.out.println("++++++++++++++++++++++++++++");
-        printUser(list.getUserById(1));
-        printUser(list.getUserById(3));
-        printUser(list.getUserById(2));
-        System.out.println("Users in list: " + list.getListSize());
-        printUser(list.getUserById(12));
-        printUser(list.getUserById(21));
+//        UsersArrayList list = new UsersArrayList();
+//
+//        list.addUser(dima);
+//        list.addUser(kira);
+//        list.addUser(alex);
+//
+//        list.addUser(new User("t1", 1));
+//        list.addUser(new User("t2", 1));
+//        list.addUser(new User("t3", 1));
+//        list.addUser(new User("t4", 1));
+//        list.addUser(new User("t5", 1));
+//        list.addUser(new User("t6", 1));
+//        list.addUser(new User("t7", 1));
+//        list.addUser(new User("t8", 1));
+//        list.addUser(new User("t9", 1));
+//
+//        System.out.println("++++++++++++++++++++++++++++");
+//        printUser(list.getUserById(1));
+//        printUser(list.getUserById(3));
+//        printUser(list.getUserById(2));
+//        System.out.println("Users in list: " + list.getListSize());
+//        printUser(list.getUserById(12));
+//        printUser(list.getUserById(21));
 //        Transaction t0 = new Transaction(dima, kira, 100);
 //        printTransaction(t0);
 //        printUser(dima);

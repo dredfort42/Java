@@ -1,37 +1,86 @@
 package ex03;
 
+import java.util.UUID;
+
 public class TransactionsLinkedList implements TransactionsList {
-    private TransactionsLinkedList	_next;
-    private TransactionsLinkedList	_previous;
-    private Transaction		_data;
+    private int length = 0;
+    private TransactionNode	begin = new TransactionNode(null, null, null);
+    private TransactionNode	end = new TransactionNode(null, null, null);
 
-    public TransactionNode(TransactionsLinkedList next, TransactionsLinkedList previous, Transaction data) {
-        _next = next;
-        _previous = previous;
-        _data = data;
+    public TransactionsLinkedList() {
+        begin.setNext(end);
+        end.setPrevious(begin);
     }
 
-    public TransactionNode getNext() {
-        return next;
+    public void addTransaction(Transaction transaction) {
+        begin.setNext(new TransactionNode(begin.getNext(), begin, transaction));
+        length++;
     }
 
-    public void setNext(TransactionNode next) {
-        this.next = next;
+    public void removeById(UUID uuid) {
+        TransactionNode tmp = begin.getNext();
+        while (tmp != end) {
+            if (tmp.getData().getIdentifier() == uuid) {
+                tmp.getPrevious().setNext(tmp.getNext());
+                tmp.getNext().setPrevious(tmp.getPrevious());
+                tmp.setNext(null);
+                tmp.setPrevious(null);
+                tmp.setData(null);
+                length--;
+                return;
+            }
+            tmp = tmp.getNext();
+        }
+        throw new TransactionNotFoundException();
     }
 
-    public TransactionNode getPrevious() {
-        return previous;
+    public Transaction[] toArray() {
+        Transaction[] tmp = new Transaction[length];
+        TransactionNode tmpNode = begin.getNext();
+
+        if (tmpNode.getData() != null) {
+            for (int i = 0; i < length; i++) {
+                tmp[i] = tmpNode.getData();
+            }
+        }
+
+        return tmp;
     }
 
-    public void setPrevious(TransactionNode previous) {
-        this.previous = previous;
-    }
+    private static class TransactionNode {
 
-    public Transaction getData() {
-        return data;
-    }
+        private TransactionNode	next;
+        private TransactionNode	previous;
+        private Transaction		data;
 
-    public void setData(Transaction data) {
-        this.data = data;
+        public TransactionNode(TransactionNode next, TransactionNode previous, Transaction data) {
+            this.next = next;
+            this.previous = previous;
+            this.data = data;
+        }
+
+        public TransactionNode getNext() {
+            return next;
+        }
+
+        public void setNext(TransactionNode next) {
+            this.next = next;
+        }
+
+        public TransactionNode getPrevious() {
+            return previous;
+        }
+
+        public void setPrevious(TransactionNode previous) {
+            this.previous = previous;
+        }
+
+        public Transaction getData() {
+            return data;
+        }
+
+        public void setData(Transaction data) {
+            this.data = data;
+        }
     }
 }
