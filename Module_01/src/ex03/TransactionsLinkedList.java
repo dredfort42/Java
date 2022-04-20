@@ -41,6 +41,7 @@ public class TransactionsLinkedList implements TransactionsList {
         if (tmpNode.getData() != null) {
             for (int i = 0; i < length; i++) {
                 tmp[i] = tmpNode.getData();
+                tmpNode = tmpNode.getNext();
             }
         }
 

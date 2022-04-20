@@ -4,19 +4,10 @@ import java.util.UUID;
 
 public class Transaction {
 
-    private UUID _identifier;
-
+    private final UUID _identifier;
     private User _recipient;
-
     private User _sender;
-
-    private enum Category {
-        DEBIT,
-        CREDIT
-    }
-
     private Category _category;
-
     private Integer _amount;
 
     public Transaction(User sender, User recipient, Integer amount) {
@@ -43,36 +34,41 @@ public class Transaction {
         return _identifier;
     }
 
-    public void setRecipient(User recipient) {
-        _recipient = recipient;
-    }
-
     public User getRecipient() {
         return _recipient;
     }
 
-    public void setSender(User sender) {
-        _sender = sender;
+    public void setRecipient(User recipient) {
+        _recipient = recipient;
     }
 
     public User getSender() {
         return _sender;
     }
 
-    public void setCategory(Category category) {
-        _category = category;
+    public void setSender(User sender) {
+        _sender = sender;
     }
 
     public Category getCategory() {
         return _category;
     }
 
-    public void setAmount(Integer amount) {
-        _amount = amount;
+    public void setCategory(Category category) {
+        _category = category;
     }
 
     public Integer getAmount() {
         return _amount;
+    }
+
+    public void setAmount(Integer amount) {
+        _amount = amount;
+    }
+
+    private enum Category {
+        DEBIT,
+        CREDIT
     }
 
 }

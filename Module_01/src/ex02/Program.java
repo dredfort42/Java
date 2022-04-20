@@ -36,6 +36,11 @@ public class Program {
         printUser(list.getUserById(1));
         printUser(list.getUserById(3));
         printUser(list.getUserById(2));
+        System.out.println("++++++++++++++++++++++++++++");
+
+        printUser(list.getUserByIndex(1));
+        printUser(list.getUserByIndex(3));
+        printUser(list.getUserByIndex(2));
         System.out.println("Users in list: " + list.getListSize());
         printUser(list.getUserById(12));
         printUser(list.getUserById(21));
