@@ -1,13 +1,13 @@
 package ex01;
 
 import java.io.*;
-import java.sql.Array;
 import java.util.*;
 
 public class Program {
 
-    public static int maxFileSize = 10;
+    public static int maxFileSizeMb = 10;
     public static String dictionaryFileName = "dictionary.txt";
+    public static String dictionaryPath = "/Users/dnovikov/Desktop/Java/Module_02/src/ex01/" + dictionaryFileName;
     public static List<String> txtA = new ArrayList<>();
     public static List<String> txtB = new ArrayList<>();
     public static Set<String> dictionary = new HashSet<>();
@@ -15,13 +15,14 @@ public class Program {
     public static void main(String[] args) throws Exception {
         if (args.length != 2)
             throw new Exception("Number of arguments greater than 2");
-        BufferedReader readerA = null;
-        BufferedReader readerB = null;
-        BufferedWriter writer;
         try {
-            readerA = new BufferedReader(new FileReader(args[0]));
-            readerB = new BufferedReader(new FileReader(args[1]));
-
+            File fileA = new File(args[0]);
+            File fileB = new File(args[1]);
+            if (fileA.length() / (1024 * 1024) > maxFileSizeMb || fileB.length() / (1024 * 1024) > maxFileSizeMb)
+                throw new Exception("File too large!");
+            BufferedReader readerA = new BufferedReader(new FileReader(args[0]));
+            BufferedReader readerB = new BufferedReader(new FileReader(args[1]));
+            BufferedWriter writer;
             String line;
             while ((line = readerA.readLine()) != null)
                 txtA.addAll(Arrays.asList(line.split(" ")));
@@ -34,7 +35,7 @@ public class Program {
 //            System.out.println(txtB);
 //            System.out.println(dictionary);
 
-            FileWriter toFile = new FileWriter(dictionaryFileName);
+            FileWriter toFile = new FileWriter(dictionaryPath);
             writer = new BufferedWriter(toFile);
             for (String w : dictionary) {
                 writer.write(w + " ");
