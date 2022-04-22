@@ -1,7 +1,7 @@
 package ex01;
 
 public class Egg extends Thread {
-    private int count;
+    private final int count;
 
     public Egg(int count) {
         this.count = count;

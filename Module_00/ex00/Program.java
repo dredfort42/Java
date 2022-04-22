@@ -1,6 +1,6 @@
 public class Program {
     public static void main(String[] args) {
-        int sixDigitNumber = 479598;
+        int sixDigitNumber = 231561;
         int result = 0;
 
         result += sixDigitNumber % 10;
