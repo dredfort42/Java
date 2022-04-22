@@ -1,152 +1,50 @@
 package ex01;
 
-//https://www.geeksforgeeks.org/producer-consumer-solution-using-threads-java/
+public class Program {
 
-//public class Program {
-    // Java program to implement solution of producer
-// consumer problem.
+    public static boolean switchThread = false;
 
-import java.util.LinkedList;
-
-    public class Threadexample {
-        public static void main(String[] args)
-                throws InterruptedException
-        {
-            // Object of a class that has both produce()
-            // and consume() methods
-            final PC pc = new PC();
-
-            // Create producer thread
-            Thread t1 = new Thread(new Runnable() {
-                @Override
-                public void run()
-                {
-                    try {
-                        pc.produce();
-                    }
-                    catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-            // Create consumer thread
-            Thread t2 = new Thread(new Runnable() {
-                @Override
-                public void run()
-                {
-                    try {
-                        pc.consume();
-                    }
-                    catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-            // Start both threads
-            t1.start();
-            t2.start();
-
-            // t1 finishes before t2
-            t1.join();
-            t2.join();
-        }
-
-        // This class has a list, producer (adds items to list
-        // and consumer (removes items).
-        public static class PC {
-
-            // Create a list shared by producer and consumer
-            // Size of list is 2.
-            LinkedList<Integer> list = new LinkedList<>();
-            int capacity = 2;
-
-            // Function called by producer thread
-            public void produce() throws InterruptedException
-            {
-                int value = 0;
-                while (true) {
-                    synchronized (this)
-                    {
-                        // producer thread waits while list
-                        // is full
-                        while (list.size() == capacity)
-                            wait();
-
-                        System.out.println("Producer produced-"
-                                + value);
-
-                        // to insert the jobs in the list
-                        list.add(value++);
-
-                        // notifies the consumer thread that
-                        // now it can start consuming
-                        notify();
-
-                        // makes the working of program easier
-                        // to understand
-                        Thread.sleep(1000);
-                    }
-                }
-            }
-
-            // Function called by consumer thread
-            public void consume() throws InterruptedException
-            {
-                while (true) {
-                    synchronized (this)
-                    {
-                        // consumer thread waits while list
-                        // is empty
-                        while (list.size() == 0)
-                            wait();
-
-                        // to retrieve the first job in the list
-                        int val = list.removeFirst();
-
-                        System.out.println("Consumer consumed-"
-                                + val);
-
-                        // Wake up producer thread
-                        notify();
-
-                        // and sleep
-                        Thread.sleep(1000);
-                    }
-                }
+    public static synchronized void printHan() {
+        if (!switchThread) {
+            try {
+                Program.class.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+        System.out.println("Hen");
+        switchThread = !switchThread;
+        Program.class.notify();
     }
 
+    public static synchronized void printEgg() {
+        if (switchThread) {
+            try {
+                Program.class.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("Egg");
+        switchThread = !switchThread;
+        Program.class.notify();
+    }
 
-//    public static void main(String[] args) throws Exception {
-//        if (args.length != 1)
-//            throw new Exception("Number of arguments greater than 1");
-//        int count;
-//        if (args[0].startsWith("--count="))
-//            count = Integer.parseInt(args[0].substring(8));
-//        else
-//            count = Integer.parseInt(args[0]);
-//        if (count < 1)
-//            throw new Exception("Invalid argument: " + count);
-////        System.out.println(count);
-//
-//        Egg egg = new Egg();
-//        Hen hen = new Hen();
-//
-//        egg.startThread(count);
-//        hen.startThread(count);
-//        egg.start();
-//        hen.start();
-//
-//        try {
-//            egg.join();
-//            hen.join();
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//        for (int i = 0; i < count; i++)
-//            System.out.println("Human");
-//    }
+    public static void main(String[] args) throws Exception {
+        if (args.length != 1)
+            throw new Exception("Number of arguments greater than 1");
+        int count;
+        if (args[0].startsWith("--count="))
+            count = Integer.parseInt(args[0].substring(8));
+        else
+            count = Integer.parseInt(args[0]);
+        if (count < 1)
+            throw new Exception("Invalid argument: " + count);
+        Egg egg = new Egg(count);
+        Hen hen = new Hen(count);
+
+        egg.start();
+        hen.start();
+    }
 }
+
