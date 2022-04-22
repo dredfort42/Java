@@ -66,9 +66,7 @@ public class Program {
             tmp.setName("Thread " + (1 + i));
             threads.add(tmp);
         }
-
-
-
+        
         for (Thread thread : threads)
             thread.start();
         for (Thread thread : threads) {
