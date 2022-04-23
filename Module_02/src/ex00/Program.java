@@ -10,12 +10,12 @@ import java.util.Scanner;
 
 public class Program {
 
-    private static final String signaturesTxtPath = "/Users/dredfort/Desktop/Java/Module_02/src/ex00/signatures.txt";
+    private static final String signaturesTxtPath = "/Users/dnovikov/Desktop/Java/Module_02/src/ex00/signatures.txt";
     private static final String processed = "PROCESSED";
     private static final String undefined = "UNDEFINED";
     private static final int maxSignatureLen = 42;
     private static final String terminator = "42";
-    private static final String outputFileName = "/Users/dredfort/Desktop/Java/Module_02/src/ex00/result.txt";
+    private static final String outputFileName = "/Users/dnovikov/Desktop/Java/Module_02/src/ex00/result.txt";
 
     public static void main(String[] args) {
         Map<String, String> signatures = new HashMap<>();
