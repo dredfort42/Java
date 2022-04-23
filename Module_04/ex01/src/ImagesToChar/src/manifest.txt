@@ -1,0 +1,4 @@
+Main-Class: edu.school21.printer.app.Program
+
+
+///// https://github.com/Preposterone/java_day04/tree/d9a4be78ba16edeb6056cff1b299f92a041ea248/src/ex01/ImagesToChar
