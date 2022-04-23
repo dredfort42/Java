@@ -1,4 +1,4 @@
-package ImagesToChar.src.java.edu.school21.printer.logic;
+package edu.school21.printer.logic;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Logic {
-    public static List<String> readImage(Path path, char blackColor, char whiteColor) throws IOException {
+    public static List<String> readImage(String file, char blackColor, char whiteColor) throws IOException {
 
-        BufferedImage image = ImageIO.read(new FileInputStream(path.toString()));
+        BufferedImage image = ImageIO.read(Logic.class.getResource(file));
         List<String> tmp = new ArrayList<>(image.getHeight() * image.getWidth());
 
         for (int y = 0; y < image.getHeight(); y++) {
