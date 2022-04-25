@@ -31,9 +31,9 @@ public class Program {
             randomInts.add((int)(Math.random() * 2 * maxModuloValue - maxModuloValue));
 
         int randomIntsSum = 0;
-        for (Integer value : randomInts)
-            randomIntsSum += value;
-        System.out.println("Sum: " + randomIntsSum);
+//        for (Integer value : randomInts)
+//            randomIntsSum += value;
+//        System.out.println("Sum: " + randomIntsSum);
 
         int range = arraySize/threadsCount + 1;
 //        System.out.println(range);

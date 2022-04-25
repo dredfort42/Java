@@ -4,10 +4,12 @@ public class Program {
     public static void main(String[] args) {
         User dima = new User("Dima", 1000);
         User kira = new User("Kira", 1000);
+//        User alex = new User("Alex", 200);
         dima.addTransaction(new Transaction(dima, kira, 100));
         dima.addTransaction(new Transaction(dima, kira, -200));
         dima.addTransaction(new Transaction(dima, kira, 300));
         dima.addTransaction(new Transaction(dima, kira, -400));
+//        kira.addTransaction(new Transaction(kira, alex, 50));
         printTransactionList(dima);
 
     }
