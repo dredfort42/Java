@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: edu.school21.numbers.NumberWorkerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.101 s - in edu.school21.numbers.NumberWorkerTest
