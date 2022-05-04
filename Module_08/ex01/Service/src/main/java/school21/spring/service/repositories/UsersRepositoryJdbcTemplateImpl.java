@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
-public class UsersRepositoryJdbcTemplateImpl implements UsersRepository{
+public class    UsersRepositoryJdbcTemplateImpl implements UsersRepository{
     private final JdbcTemplate template;
 
     public UsersRepositoryJdbcTemplateImpl(DataSource dataSource) {
@@ -45,13 +45,16 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository{
 
     @Override
     public void save(User entity) {
+        template.update("INSERT INTO data (email) values (?)", entity.getEmail());
     }
 
     @Override
     public void update(User entity) {
+        template.update("UPDATE data SET email = ? WHERE id=?", entity.getEmail(), entity.getId());
     }
 
     @Override
     public void delete(Long id) {
+        template.update("DELETE FROM data WHERE id=?", id);
     }
 }
